@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pockethealth/custom/drawerNav.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -8,13 +9,12 @@ class Home extends StatefulWidget {
 enum DrawerSelection { bio_data, medical_records, log_data }
 
 class _HomeState extends State<Home> {
-  DrawerSelection _drawerSelection = DrawerSelection.bio_data;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Records"),
+        title: Text("Bio Data"),
         actions: <Widget>[
           IconButton(
             onPressed: () {
@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
           )
         ],
       ),
-      drawer: _drawerNav(),
+      drawer: drawerNav(context),
       body: _body(),
     );
   }
@@ -115,94 +115,6 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  _drawerNav() {
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          DrawerHeader(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  'John Doe',
-                  style: TextStyle(
-                    fontSize: 30,
-                  ),
-                ),
-              ],
-            ),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/data.jpg"),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          ListTile(
-            selected: _drawerSelection == DrawerSelection.bio_data,
-            leading: Icon(
-              Icons.data_usage,
-              color: Colors.black,
-            ),
-            onTap: () {},
-            title: Text(
-              'Bio Data',
-              style: TextStyle(color: Colors.black54),
-            ),
-          ),
-          ListTile(
-            selected: _drawerSelection == DrawerSelection.medical_records,
-            leading: Icon(
-              Icons.pie_chart_outlined,
-              color: Colors.black,
-            ),
-            onTap: () {},
-            title: Text(
-              'Medical Record',
-              style: TextStyle(color: Colors.black54),
-            ),
-          ),
-          ListTile(
-            selected: _drawerSelection == DrawerSelection.log_data,
-            leading: Icon(
-              Icons.book,
-              color: Colors.black,
-            ),
-            onTap: () {},
-            title: Text(
-              'Log Data',
-              style: TextStyle(color: Colors.black54),
-            ),
-          ),
-          ListTile(
-            leading: Icon(
-              Icons.local_hospital,
-              color: Colors.black,
-            ),
-            onTap: () {},
-            title: Text(
-              'Hospitals',
-              style: TextStyle(color: Colors.black54),
-            ),
-          ),
-          ListTile(
-            leading: Icon(
-              Icons.notification_important,
-              color: Colors.black,
-            ),
-            onTap: () {},
-            title: Text(
-              'ICE',
-              style: TextStyle(color: Colors.black54),
-            ),
-          ),
-        ],
       ),
     );
   }
