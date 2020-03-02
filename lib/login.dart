@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pockethealth/firebase/auth.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -10,6 +11,7 @@ class _LoginState extends State<Login> {
   var formKey = GlobalKey<FormState>();
   String _email = "";
   String _password = "";
+  BaseAuth login = new BaseAuth();
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +24,11 @@ class _LoginState extends State<Login> {
     );
   }
 
-  validateAndSave() {
+  validateAndSave() async {
     final form = formKey.currentState;
     if (form.validate()) {
       form.save();
+      login.signIn(_email, _password);
       return true;
     }
     return false;
@@ -97,7 +100,9 @@ class _LoginState extends State<Login> {
           ),
         ),
         onPressed: () {
-          Navigator.of(context).pushReplacementNamed("/home");
+          validateAndSave()
+              ? Navigator.of(context).pushReplacementNamed("/home")
+              : notify("msg");
         },
       ),
     );
@@ -179,7 +184,7 @@ class _LoginState extends State<Login> {
           ),
         ),
         validator: (value) =>
-            value.isEmpty ? "please input a valid email" : null,
+            value.isEmpty ? "Please input a valid email" : null,
         onSaved: (value) {
           _email = value;
         },

@@ -16,6 +16,15 @@ class _HomeState extends State<Home> {
       appBar: customAppBar(context, "Bio Data"),
       drawer: drawerNav(context),
       body: _body(),
+      floatingActionButton: FloatingActionButton(
+        elevation: 10.0,
+        backgroundColor: Colors.white,
+        child: Icon(
+          Icons.add,
+          color: Colors.green,
+        ),
+        onPressed: () {},
+      ),
     );
   }
 
