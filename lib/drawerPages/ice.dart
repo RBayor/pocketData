@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pockethealth/custom/customAppBar.dart';
 import 'package:pockethealth/custom/drawerNav.dart';
 
 class ICE extends StatefulWidget {
@@ -10,10 +11,7 @@ class _ICEState extends State<ICE> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(
-        centerTitle: true,
-        title: Text("ICE Contacts"),
-      ),
+      appBar: customAppBar(context, "ICE"),
       drawer: drawerNav(context),
       body: ListView.builder(
         itemCount: 10,

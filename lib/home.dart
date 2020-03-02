@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pockethealth/custom/customAppBar.dart';
 import 'package:pockethealth/custom/drawerNav.dart';
 
 class Home extends StatefulWidget {
@@ -12,21 +13,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text("Bio Data"),
-        actions: <Widget>[
-          IconButton(
-            onPressed: () {
-              Navigator.popAndPushNamed(context, "/");
-            },
-            icon: Icon(
-              Icons.exit_to_app,
-              color: Colors.black,
-            ),
-          )
-        ],
-      ),
+      appBar: customAppBar(context, "Bio Data"),
       drawer: drawerNav(context),
       body: _body(),
     );

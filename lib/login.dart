@@ -71,7 +71,14 @@ class _LoginState extends State<Login> {
             ),
             _emailField(),
             _passField(),
-            _loginBtn()
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                _resetPassBtn(),
+                _loginBtn(),
+              ],
+            )
           ],
         ),
       ),
@@ -80,11 +87,29 @@ class _LoginState extends State<Login> {
 
   _loginBtn() {
     return Padding(
-      padding: EdgeInsets.only(top: 20),
+      padding: EdgeInsets.all(20),
       child: RaisedButton(
         color: Colors.white,
         child: Text(
           "Login",
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+        onPressed: () {
+          Navigator.of(context).pushReplacementNamed("/home");
+        },
+      ),
+    );
+  }
+
+  _resetPassBtn() {
+    return Padding(
+      padding: EdgeInsets.all(20),
+      child: FlatButton(
+        color: Colors.white,
+        child: Text(
+          "Reset Password",
           style: TextStyle(
             color: Colors.black,
           ),

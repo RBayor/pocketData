@@ -7,15 +7,22 @@ Drawer drawerNav(BuildContext context) {
       children: <Widget>[
         DrawerHeader(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
-              Text(
-                'John Doe',
-                style: TextStyle(
-                  fontSize: 30,
+              Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
                 ),
-              ),
+                color: Colors.black26,
+                child: Padding(
+                  padding: EdgeInsets.all(3),
+                  child: Text(
+                    'John Doe',
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+                ),
+              )
             ],
           ),
           decoration: BoxDecoration(
@@ -27,7 +34,7 @@ Drawer drawerNav(BuildContext context) {
         ),
         ListTile(
           leading: Icon(
-            Icons.data_usage,
+            Icons.person_outline,
             color: Colors.black,
           ),
           onTap: () {
@@ -41,7 +48,7 @@ Drawer drawerNav(BuildContext context) {
         ListTile(
           // selected: _drawerSelection == DrawerSelection.medical_records,
           leading: Icon(
-            Icons.pie_chart_outlined,
+            Icons.book,
             color: Colors.black,
           ),
           onTap: () {
@@ -54,10 +61,12 @@ Drawer drawerNav(BuildContext context) {
         ),
         ListTile(
           leading: Icon(
-            Icons.book,
+            Icons.pie_chart_outlined,
             color: Colors.black,
           ),
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context).pushReplacementNamed('/log');
+          },
           title: Text(
             'Log Data',
             style: TextStyle(color: Colors.black54),
@@ -68,7 +77,9 @@ Drawer drawerNav(BuildContext context) {
             Icons.local_hospital,
             color: Colors.black,
           ),
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context).pushReplacementNamed('/hospital');
+          },
           title: Text(
             'Hospitals',
             style: TextStyle(color: Colors.black54),

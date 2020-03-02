@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "51189458190",
+    "firebase_url": "https://final-project-31614.firebaseio.com",
+    "project_id": "final-project-31614",
+    "storage_bucket": "final-project-31614.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51189458190:android:c502f69cffba2b0656635f",
+        "android_client_info": {
+          "package_name": "com.example.pockethealth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "51189458190-ana4fcktujr3rsp147ceu2k37ggoui9h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYSkcRwfO-P89VaqfcHkdyCNmWbyI0CaM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "51189458190-ana4fcktujr3rsp147ceu2k37ggoui9h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
