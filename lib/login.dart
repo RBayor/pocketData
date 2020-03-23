@@ -24,15 +24,19 @@ class _LoginState extends State<Login> {
     );
   }
 
-  validateAndSave() async {
+  validateAndSave() {
     final form = formKey.currentState;
     if (form.validate()) {
       form.save();
-      login.signIn(_email, _password);
       return true;
     }
-    return false;
   }
+
+  // loginUser() {
+  //   if (validateAndSave() != null) {
+  //     return login.signIn(_email, _password);
+  //   }
+  // }
 
   notify(msg) {
     return showDialog<void>(
@@ -100,9 +104,15 @@ class _LoginState extends State<Login> {
           ),
         ),
         onPressed: () {
-          validateAndSave()
-              ? Navigator.of(context).pushReplacementNamed("/home")
-              : notify("msg");
+          if (validateAndSave() != null) {
+            print(_password);
+            login.signIn(_email, _password).then((val) {
+              Navigator.of(context).pushReplacementNamed("/home");
+            });
+          }
+
+          // Navigator.of(context).pushReplacementNamed("/home");
+          // : notify("msg");
         },
       ),
     );

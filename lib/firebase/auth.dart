@@ -5,11 +5,8 @@ class BaseAuth {
 
   Future signIn(email, password) {
     try {
-      firebaseAuth
-          .signInWithEmailAndPassword(email: email, password: password)
-          .then((val) {
-        return null;
-      });
+      return firebaseAuth.signInWithEmailAndPassword(
+          email: email.toString().trim(), password: password.toString().trim());
     } catch (e) {
       //print(e);
       return null;
