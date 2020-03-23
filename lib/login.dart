@@ -12,15 +12,18 @@ class _LoginState extends State<Login> {
   String _email = "";
   String _password = "";
   BaseAuth login = new BaseAuth();
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      body: Form(
-        key: formKey,
-        child: _body(),
-      ),
+      body: _isLoading
+          ? _loading()
+          : Form(
+              key: formKey,
+              child: _body(),
+            ),
     );
   }
 
@@ -32,16 +35,10 @@ class _LoginState extends State<Login> {
     }
   }
 
-  // loginUser() {
-  //   if (validateAndSave() != null) {
-  //     return login.signIn(_email, _password);
-  //   }
-  // }
-
   notify(msg) {
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('User'),
@@ -92,6 +89,12 @@ class _LoginState extends State<Login> {
     );
   }
 
+  _loading() {
+    return Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
   _loginBtn() {
     return Padding(
       padding: EdgeInsets.all(20),
@@ -104,13 +107,14 @@ class _LoginState extends State<Login> {
           ),
         ),
         onPressed: () {
+          _isLoading = true;
+          setState(() {});
           if (validateAndSave() != null) {
             print(_password);
             login.signIn(_email, _password).then((val) {
               Navigator.of(context).pushReplacementNamed("/home");
             });
           }
-
           // Navigator.of(context).pushReplacementNamed("/home");
           // : notify("msg");
         },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pockethealth/custom/customAppBar.dart';
 import 'package:pockethealth/custom/drawerNav.dart';
+import 'bioData/editBData.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -23,7 +24,10 @@ class _HomeState extends State<Home> {
           Icons.add,
           color: Colors.green,
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => EditBData()));
+        },
       ),
     );
   }
@@ -39,7 +43,7 @@ class _HomeState extends State<Home> {
 
   _bData() {
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 2.2,
+      height: MediaQuery.of(context).size.height / 2.5,
       child: Padding(
         padding: EdgeInsets.all(20),
         child: Card(
@@ -79,7 +83,7 @@ class _HomeState extends State<Home> {
 
   _cData() {
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 2.4,
+      height: MediaQuery.of(context).size.height / 2.5,
       child: Padding(
         padding: EdgeInsets.all(20),
         child: Card(
