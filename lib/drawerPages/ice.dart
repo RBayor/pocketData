@@ -24,8 +24,8 @@ class _ICEState extends State<ICE> {
               child: Padding(
                 padding: const EdgeInsets.all(5),
                 child: ListTile(
-                  title: Text("Contact Name"),
-                  subtitle: Text("Relation\nNumber"),
+                  title: Text("Jane Doe"),
+                  subtitle: Text("Sister \n0240000001"),
                 ),
               ));
         },

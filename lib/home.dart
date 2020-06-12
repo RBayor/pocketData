@@ -2,15 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:pockethealth/custom/customAppBar.dart';
 import 'package:pockethealth/custom/drawerNav.dart';
 import 'bioData/editBData.dart';
+import 'package:pockethealth/firebase/auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 
-enum DrawerSelection { bio_data, medical_records, log_data }
+//enum DrawerSelection { bio_data, medical_records, log_data }
 
 class _HomeState extends State<Home> {
+  BaseAuth user = new BaseAuth();
+  var db = Firestore.instance;
+
+  getBioData() async {
+    var currentUser = await user.currentUser();
+    //var data = await db.collection("health").document("currentUser").get();
+    print(currentUser);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getBioData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +41,8 @@ class _HomeState extends State<Home> {
           Icons.add,
           color: Colors.green,
         ),
-        onPressed: () {
+        onPressed: () async {
+          print(await user.currentUser());
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => EditBData()));
         },

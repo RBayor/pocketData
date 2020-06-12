@@ -107,16 +107,13 @@ class _LoginState extends State<Login> {
           ),
         ),
         onPressed: () {
-          _isLoading = true;
-          setState(() {});
           if (validateAndSave() != null) {
-            print(_password);
+            _isLoading = true;
+            setState(() {});
             login.signIn(_email, _password).then((val) {
               Navigator.of(context).pushReplacementNamed("/home");
             });
           }
-          // Navigator.of(context).pushReplacementNamed("/home");
-          // : notify("msg");
         },
       ),
     );

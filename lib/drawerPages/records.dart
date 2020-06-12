@@ -18,8 +18,8 @@ class _RecordsState extends State<Records> {
           return ListTile(
             onTap: () {},
             leading: Icon(Icons.book),
-            title: Text("Problem"),
-            subtitle: Text("Short Description"),
+            title: Text("Malaria"),
+            subtitle: Text("Headaches and fever"),
           );
         },
       ),
