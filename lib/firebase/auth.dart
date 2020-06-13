@@ -4,13 +4,8 @@ class BaseAuth {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   Future signIn(email, password) {
-    try {
-      return firebaseAuth.signInWithEmailAndPassword(
-          email: email.toString().trim(), password: password.toString().trim());
-    } catch (e) {
-      //print(e);
-      return null;
-    }
+    return firebaseAuth.signInWithEmailAndPassword(
+        email: email.toString().trim(), password: password.toString().trim());
   }
 
   Future<String> currentUser() async {

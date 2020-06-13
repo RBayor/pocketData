@@ -38,10 +38,10 @@ class _LoginState extends State<Login> {
   notify(msg) {
     return showDialog<void>(
       context: context,
-      barrierDismissible: false,
+      barrierDismissible: true,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('User'),
+          title: Text('Error'),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
@@ -79,7 +79,7 @@ class _LoginState extends State<Login> {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                _resetPassBtn(),
+                // _resetPassBtn(),
                 _loginBtn(),
               ],
             )
@@ -110,32 +110,39 @@ class _LoginState extends State<Login> {
           if (validateAndSave() != null) {
             _isLoading = true;
             setState(() {});
-            login.signIn(_email, _password).then((val) {
+            login.signIn(_email.trim(), _password.trim()).then((val) {
+              _isLoading = false;
               Navigator.of(context).pushReplacementNamed("/home");
+            }).catchError((onError) {
+              //print(onError);
+              notify("Invalid Credentials");
+              setState(() {
+                _isLoading = false;
+              });
             });
+          } else {
+            notify("Invalid Credentials");
           }
         },
       ),
     );
   }
 
-  _resetPassBtn() {
-    return Padding(
-      padding: EdgeInsets.all(20),
-      child: FlatButton(
-        color: Colors.white,
-        child: Text(
-          "Reset Password",
-          style: TextStyle(
-            color: Colors.black,
-          ),
-        ),
-        onPressed: () {
-          Navigator.of(context).pushReplacementNamed("/home");
-        },
-      ),
-    );
-  }
+  // _resetPassBtn() {
+  //   return Padding(
+  //     padding: EdgeInsets.all(20),
+  //     child: FlatButton(
+  //       color: Colors.white,
+  //       child: Text(
+  //         "Reset Password",
+  //         style: TextStyle(
+  //           color: Colors.black,
+  //         ),
+  //       ),
+  //       onPressed: () {},
+  //     ),
+  //   );
+  // }
 
   _passField() {
     return Padding(
